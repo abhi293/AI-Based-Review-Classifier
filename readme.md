@@ -9,16 +9,8 @@ The **AI-Based Review Classifier** is a machine learning-powered web application
 - ✅ **RESTful API for Classification**
 - ✅ **Preprocessing & Model Training Scripts**
 - ✅ **Flask API for AI Model Deployment**
-- ✅ **Secure Node.js Backend**
 - ✅ **Scalable & Modular Architecture**
 - ✅ **Automated Training & Evaluation**
-- ✅ **CI/CD & Deployment Support**
-
----
-## 🏗️ System Architecture
-```plaintext
-User ➝ Frontend ➝ Backend (Node.js) ➝ AI Model (Flask) ➝ Database (MongoDB)
-```
 
 ---
 ## 📂 Project Structure
@@ -52,9 +44,6 @@ AI-Based-Review-Classifier/
 
 ---
 ## 🛠️ Tech Stack
-### **Backend (API & Server)**
-- **Node.js**, **Express.js**, **MongoDB**, **Socket.io**
-- **Nodemailer** (Email notifications)
 
 ### **AI Model**
 - **Python**, **Flask**, **Scikit-Learn**, **TF-IDF**
@@ -70,12 +59,6 @@ AI-Based-Review-Classifier/
 |--------|------------------|--------------------------|
 | `POST` | `/predict`       | Classifies review       |
 
-### **2️⃣ Backend API (Node.js)**
-| Method | Endpoint                | Description                         |
-|--------|------------------------|-------------------------------------|
-| `POST` | `/api/ai/classify`      | Classifies user review            |
-| `GET`  | `/api/reviews`         | Fetches all classified reviews    |
-
 ---
 ## ⚙️ Installation & Setup
 ### **1️⃣ Clone Repository**
@@ -85,31 +68,15 @@ cd AI-Based-Review-Classifier
 ```
 
 ### **2️⃣ Install Dependencies**
-#### **Backend (Node.js)**
-```sh
-cd backend
-npm install
-```
 #### **AI Model (Python)**
 ```sh
 cd ai_model/api
 pip install -r requirements.txt
 ```
 
-### **3️⃣ Setup Environment Variables**
-Create a `.env` file in the **backend/** folder:
-```env
-MONGO_URI=your_mongo_db_connection_string
-PORT=5000
-```
 
 ---
 ## 🚀 Running the Application
-### **1️⃣ Start Backend (Node.js)**
-```sh
-cd backend
-npm start
-```
 
 ### **2️⃣ Start AI Model API (Flask)**
 ```sh
@@ -119,25 +86,17 @@ python app.py
 
 ### **3️⃣ Test in Postman**
 ```
-POST http://localhost:5000/api/ai/classify
-Body: { "review": "This product is amazing!" }
+POST http://localhost:5000/api/predict
+Body: { "text": "This product is amazing!" } //JSON
 ```
 
 ---
 ## 🛠️ Deployment
-### **Backend Deployment**
-- Deploy on **Heroku**, **AWS**, or **Vercel**
-- Use **PM2** for process management
 
 ### **AI Model Deployment**
 - Deploy Flask API on **Render** or **Google Cloud**
 - Use **Docker** for containerization
 
----
-## 🔐 Security Enhancements
-- **JWT Authentication**
-- **CORS Handling**
-- **Input Validation**
 
 ---
 ## 📊 Monitoring & Visualization
