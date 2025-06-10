@@ -1,119 +1,139 @@
 # 🎯 AI-Based Review Classifier
 
 ## 📌 Overview
-The **AI-Based Review Classifier** is a machine learning-powered web application designed to classify customer reviews as **Positive, Negative, or Neutral**. The system integrates a **Flask-based AI model** with a **Node.js backend** and supports real-time classification.
+The **AI-Based Review Classifier** is a Python-based machine learning application that classifies customer reviews as **Positive** or **Negative**. It uses a **Logistic Regression** model trained on **TF-IDF** features, and exposes a RESTful API for real-time predictions using **Flask** (with an example FastAPI implementation also included).
 
 ---
 ## 🚀 Features
-- ✅ **Machine Learning-Based Sentiment Analysis**
-- ✅ **RESTful API for Classification**
-- ✅ **Preprocessing & Model Training Scripts**
-- ✅ **Flask API for AI Model Deployment**
-- ✅ **Scalable & Modular Architecture**
-- ✅ **Automated Training & Evaluation**
+- ✅ **Logistic Regression Model for Sentiment Analysis**
+- ✅ **TF-IDF Text Vectorization**
+- ✅ **RESTful API for Real-Time Classification (Flask)**
+- ✅ **Preprocessing, Training, and Evaluation Scripts**
+- ✅ **Jupyter Notebooks for Data Exploration and Testing**
+- ✅ **Docker Support for Easy Deployment**
+- ✅ **Automated Model Testing and Evaluation**
 
 ---
 ## 📂 Project Structure
 ```
-(for %i in (file1.txt test.js ) do type nul > %i)    #To create multiple files at once
 AI-Based-Review-Classifier/
-│── 📂 ai_model/                  # AI Model (Python & Machine Learning)
-│   ├── 📂 data/                    # Dataset storage
-│   │   ├── train.csv          # Raw dataset
-│   │   ├── test.csv
-│   ├── 📂 training/                 # Training scripts
-│   │   ├── preprocess.py           # Data preprocessing
-│   │   ├── train_model.py          # Model training & saving
-│   │   ├── evaluate.py             # Model evaluation
-│   ├── 📂 api/                     # Flask API to expose model
-│   │   ├── app.py                  # Flask API for predictions
-│   │   ├── model_loader.py         # Model loading utility
-│   │   ├── requirements.txt        # Python dependencies
-│   ├── 📂 notebooks/               # Jupyter notebooks for experiments
-│   │   ├── DataExploration.ipynb   # Dataset exploration
-│   │   ├── ModelTesting.ipynb      # Model evaluation
-│   ├── 📂 tests/                   # Model testing scripts
-│   │   ├── test_predictions.py     # API testing for model predictions
-│   │   ├── test_preprocessing.py   # Test data preprocessing steps
-│   ├── ai_service.py               # Python client to call Flask API
+│   ai_service.py                # Python client for API
+│   check_data_balance.py        # Data balance checker
+│   Dockerfile                   # Docker deployment
+│   evaluate.py                  # Model evaluation script
+│   main.py                      # FastAPI example (optional)
+│   model.pkl                    # Trained model
+│   ModelTesting.py              # Model testing script
+│   profile_training.py          # Profiling training time
+│   sample.py                    # Sample model training
+│   vectorizer.pkl               # Saved TF-IDF vectorizer
+│   readme.md                    # Project documentation
 │
-└── README.md                      # Project documentation
-
-
+├── api/
+│   ├── app.py                   # Flask API for predictions
+│   ├── model_loader.py          # Model/vectorizer loader
+│   └── requirements.txt         # Python dependencies
+│
+├── notebooks/
+│   ├── DataExploration.ipynb    # Data exploration
+│   └── ModelTesting.ipynb       # Model evaluation
+│
+├── tests/
+│   ├── test_predictions.py      # API prediction tests
+│   └── test_preprocessing.py    # Preprocessing tests
+│
+└── training/
+    ├── preprocess.py            # Data preprocessing
+    ├── train_model.py           # Model training
+    └── evaluate.py              # Model evaluation
 ```
 
 ---
 ## 🛠️ Tech Stack
-
-### **AI Model**
-- **Python**, **Flask**, **Scikit-Learn**, **TF-IDF**
+- **Python 3.10+**
+- **Flask** (REST API)
+- **Scikit-Learn** (Logistic Regression, TF-IDF)
+- **Pandas, NumPy**
 - **Jupyter Notebooks** (Experiments)
+- **Docker** (Deployment)
 
-### **Frontend (Optional)**
-- **React.js**, **TailwindCSS**
+---
+## 🤖 Model & Algorithm Details
+- **Algorithm:** Logistic Regression (from scikit-learn)
+- **Feature Extraction:** TF-IDF (Term Frequency-Inverse Document Frequency)
+- **Input:** Raw review text
+- **Output:** Sentiment label (`positive` or `negative`) and confidence score
+- **Model Artifacts:** `model.pkl` (Logistic Regression), `vectorizer.pkl` (TF-IDF)
 
 ---
 ## 📡 API Endpoints
-### **1️⃣ AI Model API (Flask)**
-| Method | Endpoint          | Description              |
-|--------|------------------|--------------------------|
-| `POST` | `/predict`       | Classifies review       |
+### **Flask API**
+| Method | Endpoint   | Description                |
+|--------|------------|----------------------------|
+| POST   | `/predict` | Classifies review text     |
+
+**Sample Request:**
+```
+POST http://localhost:5000/predict
+Content-Type: application/json
+{
+  "text": "This product is amazing!"
+}
+```
+**Sample Response:**
+```
+{
+  "prediction": "positive",
+  "confidence": "98.00%"
+}
+```
 
 ---
 ## ⚙️ Installation & Setup
-### **1️⃣ Clone Repository**
-```sh
+
+### 1️⃣ Clone the Repository
+```
 git clone https://github.com/yourusername/AI-Based-Review-Classifier.git
 cd AI-Based-Review-Classifier
 ```
 
-### **2️⃣ Install Dependencies**
-#### **AI Model (Python)**
-```sh
-cd ai_model/api
-pip install -r requirements.txt
+### 2️⃣ Install Dependencies
 ```
-
+pip install -r api/requirements.txt
+```
 
 ---
 ## 🚀 Running the Application
 
-### **2️⃣ Start AI Model API (Flask)**
-```sh
-cd ai_model/api
+### Start the Flask API
+```
+cd api
 python app.py
 ```
 
-### **3️⃣ Test in Postman**
+The API will be available at `http://localhost:5000/predict`.
+
+---
+## 🐳 Docker Deployment
+To build and run the app with Docker:
 ```
-POST http://localhost:5000/api/predict
-Body: { "text": "This product is amazing!" } //JSON
+docker build -t review-classifier .
+docker run -p 8001:8001 review-classifier
 ```
 
 ---
-## 🛠️ Deployment
-
-### **AI Model Deployment**
-- Deploy Flask API on **Render** or **Google Cloud**
-- Use **Docker** for containerization
-
-
----
-## 📊 Monitoring & Visualization
-- **Grafana & Prometheus** for API monitoring
-- **MLflow** for AI model tracking
+## 🧪 Testing
+- Run `tests/test_predictions.py` to test API predictions.
+- Run `tests/test_preprocessing.py` to test preprocessing.
+- Use Jupyter notebooks in `notebooks/` for exploration and evaluation.
 
 ---
 ## 🤝 Contributing
-We welcome contributions! Follow these steps:
-1. **Fork the repo**
-2. **Create a new branch** (`feature-branch`)
-3. **Commit your changes**
-4. **Create a Pull Request**
+We welcome contributions! Please fork the repo, create a branch, and submit a pull request.
 
 ---
 ## 📜 License
-This project is licensed under the **MIT License**. Feel free to modify and use it!
+This project is licensed under the **MIT License**.
 
 🚀 **Happy Coding!** 🎉
 
