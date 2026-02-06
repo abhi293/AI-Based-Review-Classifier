@@ -1,4 +1,4 @@
-# 🎯 AI-Based Review Classifier
+# 🎯 AI-Based-Review-Classifier
 
 ## 📌 Overview
 The **AI-Based Review Classifier** is a Python-based machine learning application that classifies customer reviews as **Positive** or **Negative**. It uses a **Logistic Regression** model trained on **TF-IDF** features, and exposes a RESTful API for real-time predictions using **Flask** (with an example FastAPI implementation also included).
